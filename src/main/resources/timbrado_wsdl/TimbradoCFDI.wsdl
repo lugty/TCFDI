@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/"/>
+      <s:element name="authenticateUser">
+        <s:complexType/>
+      </s:element>
+      <s:element name="authenticateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authenticateUserResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SecureWebServiceHeader" type="tns:SecureWebServiceHeader"/>
+      <s:complexType name="SecureWebServiceHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticatedToken" type="s:string"/>
+        </s:sequence>
+        <s:anyAttribute/>
+      </s:complexType>
+      <s:element name="isAuthenticated">
+        <s:complexType/>
+      </s:element>
+      <s:element name="isAuthenticatedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isAuthenticatedResult" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="soapHeader" type="tns:SecureWebServiceHeader"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="logOutResult" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbreCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cfdi" type="s:base64Binary"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbreCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbreCFDIResult" type="tns:ResponceTimbrado"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponceTimbrado">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TimbradoCFDI" type="s:base64Binary"/>
+          <s:element minOccurs="1" maxOccurs="1" name="isTimbrado" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TimbreTFD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cfdi" type="s:base64Binary"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbreTFDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbreTFDResult" type="tns:ResponceTimbrado"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uuid" type="s1:guid"/>
+            <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pfx_base64" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="passPfx" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelaCFDIResult" type="tns:ResponseCancelacion"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseCancelacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="isCancelado" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="uuid" type="s1:guid"/>
+          <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TimbreTestCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cfdi" type="s:base64Binary"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbreTestCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbreTestCFDIResult" type="tns:ResponceTimbrado"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbreTestTFD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cfdi" type="s:base64Binary"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbreTestTFDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbreTestTFDResult" type="tns:ResponceTimbrado"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uData" type="tns:UserInformation"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="rfc" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="timbres" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="createAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="createAccountResult" type="tns:UserInformationResponse"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInformationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="rfc" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="timbres" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="estado" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="create_Time" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="created" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="resetPasswordAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resetPasswordAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resetPasswordAccountResult" type="tns:UserInformationResponse"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeAccountState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="state" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeAccountStateResponse">
+        <s:complexType/>
+      </s:element>
+      <s:element name="getUserStatusInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserStatusInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUserStatusInformationResult" type="tns:UserStatusInformationDetail"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserStatusInformationDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="rfc" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="status" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="creation_date" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="total_timbres" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="used_timbres" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="hasError" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="addTimbres">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addTimbresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addTimbresResult" type="tns:UserStatusInformationDetail"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeTimbresTotal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeTimbresTotalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="changeTimbresTotalResult" type="tns:UserStatusInformationDetail"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCertificateStateLCO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noSerie" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCertificateStateLCOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCertificateStateLCOResult" type="tns:CertificateStateLCO"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CertificateStateLCO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="is_found" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="no_serie" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="init_date" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="final_date" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="state_certificado" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="rfc" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="hasError" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="authenticateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:authenticateUser"/>
+  </wsdl:message>
+  <wsdl:message name="authenticateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:authenticateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="authenticateUserSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="isAuthenticatedSoapIn">
+    <wsdl:part name="parameters" element="tns:isAuthenticated"/>
+  </wsdl:message>
+  <wsdl:message name="isAuthenticatedSoapOut">
+    <wsdl:part name="parameters" element="tns:isAuthenticatedResponse"/>
+  </wsdl:message>
+  <wsdl:message name="logOutSoapIn">
+    <wsdl:part name="parameters" element="tns:logOut"/>
+  </wsdl:message>
+  <wsdl:message name="logOutSoapOut">
+    <wsdl:part name="parameters" element="tns:logOutResponse"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:TimbreCFDI"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:TimbreCFDIResponse"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreCFDISecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTFDSoapIn">
+    <wsdl:part name="parameters" element="tns:TimbreTFD"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTFDSoapOut">
+    <wsdl:part name="parameters" element="tns:TimbreTFDResponse"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTFDSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="CancelaCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:CancelaCFDI"/>
+  </wsdl:message>
+  <wsdl:message name="CancelaCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:CancelaCFDIResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CancelaCFDISecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTestCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:TimbreTestCFDI"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTestCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:TimbreTestCFDIResponse"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTestCFDISecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTestTFDSoapIn">
+    <wsdl:part name="parameters" element="tns:TimbreTestTFD"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTestTFDSoapOut">
+    <wsdl:part name="parameters" element="tns:TimbreTestTFDResponse"/>
+  </wsdl:message>
+  <wsdl:message name="TimbreTestTFDSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:createAccount"/>
+  </wsdl:message>
+  <wsdl:message name="createAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:createAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="createAccountSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="resetPasswordAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:resetPasswordAccount"/>
+  </wsdl:message>
+  <wsdl:message name="resetPasswordAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:resetPasswordAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="resetPasswordAccountSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="changeAccountStateSoapIn">
+    <wsdl:part name="parameters" element="tns:changeAccountState"/>
+  </wsdl:message>
+  <wsdl:message name="changeAccountStateSoapOut">
+    <wsdl:part name="parameters" element="tns:changeAccountStateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="changeAccountStateSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="getUserStatusInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:getUserStatusInformation"/>
+  </wsdl:message>
+  <wsdl:message name="getUserStatusInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserStatusInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getUserStatusInformationSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="addTimbresSoapIn">
+    <wsdl:part name="parameters" element="tns:addTimbres"/>
+  </wsdl:message>
+  <wsdl:message name="addTimbresSoapOut">
+    <wsdl:part name="parameters" element="tns:addTimbresResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addTimbresSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="changeTimbresTotalSoapIn">
+    <wsdl:part name="parameters" element="tns:changeTimbresTotal"/>
+  </wsdl:message>
+  <wsdl:message name="changeTimbresTotalSoapOut">
+    <wsdl:part name="parameters" element="tns:changeTimbresTotalResponse"/>
+  </wsdl:message>
+  <wsdl:message name="changeTimbresTotalSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:message name="getCertificateStateLCOSoapIn">
+    <wsdl:part name="parameters" element="tns:getCertificateStateLCO"/>
+  </wsdl:message>
+  <wsdl:message name="getCertificateStateLCOSoapOut">
+    <wsdl:part name="parameters" element="tns:getCertificateStateLCOResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getCertificateStateLCOSecureWebServiceHeader">
+    <wsdl:part name="SecureWebServiceHeader" element="tns:SecureWebServiceHeader"/>
+  </wsdl:message>
+  <wsdl:portType name="TimbradoCFDISoap">
+    <wsdl:operation name="authenticateUser">
+      <wsdl:input message="tns:authenticateUserSoapIn"/>
+      <wsdl:output message="tns:authenticateUserSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="isAuthenticated">
+      <wsdl:input message="tns:isAuthenticatedSoapIn"/>
+      <wsdl:output message="tns:isAuthenticatedSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="logOut">
+      <wsdl:input message="tns:logOutSoapIn"/>
+      <wsdl:output message="tns:logOutSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:TimbreCFDISoapIn"/>
+      <wsdl:output message="tns:TimbreCFDISoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTFD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:TimbreTFDSoapIn"/>
+      <wsdl:output message="tns:TimbreTFDSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:CancelaCFDISoapIn"/>
+      <wsdl:output message="tns:CancelaCFDISoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTestCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:TimbreTestCFDISoapIn"/>
+      <wsdl:output message="tns:TimbreTestCFDISoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTestTFD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:TimbreTestTFDSoapIn"/>
+      <wsdl:output message="tns:TimbreTestTFDSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:createAccountSoapIn"/>
+      <wsdl:output message="tns:createAccountSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="resetPasswordAccount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:resetPasswordAccountSoapIn"/>
+      <wsdl:output message="tns:resetPasswordAccountSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="changeAccountState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:changeAccountStateSoapIn"/>
+      <wsdl:output message="tns:changeAccountStateSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getUserStatusInformation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:getUserStatusInformationSoapIn"/>
+      <wsdl:output message="tns:getUserStatusInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="addTimbres">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:addTimbresSoapIn"/>
+      <wsdl:output message="tns:addTimbresSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="changeTimbresTotal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:changeTimbresTotalSoapIn"/>
+      <wsdl:output message="tns:changeTimbresTotalSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificateStateLCO">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session</wsdl:documentation>
+      <wsdl:input message="tns:getCertificateStateLCOSoapIn"/>
+      <wsdl:output message="tns:getCertificateStateLCOSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TimbradoCFDISoap" type="tns:TimbradoCFDISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="authenticateUser">
+      <soap:operation soapAction="http://tempuri.org/authenticateUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:authenticateUserSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isAuthenticated">
+      <soap:operation soapAction="http://tempuri.org/isAuthenticated" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logOut">
+      <soap:operation soapAction="http://tempuri.org/logOut" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreCFDI">
+      <soap:operation soapAction="http://tempuri.org/TimbreCFDI" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:TimbreCFDISecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTFD">
+      <soap:operation soapAction="http://tempuri.org/TimbreTFD" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:TimbreTFDSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaCFDI">
+      <soap:operation soapAction="http://tempuri.org/CancelaCFDI" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:CancelaCFDISecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTestCFDI">
+      <soap:operation soapAction="http://tempuri.org/TimbreTestCFDI" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:TimbreTestCFDISecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTestTFD">
+      <soap:operation soapAction="http://tempuri.org/TimbreTestTFD" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:TimbreTestTFDSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <soap:operation soapAction="http://tempuri.org/createAccount" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:createAccountSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPasswordAccount">
+      <soap:operation soapAction="http://tempuri.org/resetPasswordAccount" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:resetPasswordAccountSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeAccountState">
+      <soap:operation soapAction="http://tempuri.org/changeAccountState" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:changeAccountStateSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserStatusInformation">
+      <soap:operation soapAction="http://tempuri.org/getUserStatusInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:getUserStatusInformationSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTimbres">
+      <soap:operation soapAction="http://tempuri.org/addTimbres" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:addTimbresSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeTimbresTotal">
+      <soap:operation soapAction="http://tempuri.org/changeTimbresTotal" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:changeTimbresTotalSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificateStateLCO">
+      <soap:operation soapAction="http://tempuri.org/getCertificateStateLCO" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:getCertificateStateLCOSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TimbradoCFDISoap12" type="tns:TimbradoCFDISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="authenticateUser">
+      <soap12:operation soapAction="http://tempuri.org/authenticateUser" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:authenticateUserSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isAuthenticated">
+      <soap12:operation soapAction="http://tempuri.org/isAuthenticated" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logOut">
+      <soap12:operation soapAction="http://tempuri.org/logOut" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreCFDI">
+      <soap12:operation soapAction="http://tempuri.org/TimbreCFDI" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:TimbreCFDISecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTFD">
+      <soap12:operation soapAction="http://tempuri.org/TimbreTFD" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:TimbreTFDSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaCFDI">
+      <soap12:operation soapAction="http://tempuri.org/CancelaCFDI" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:CancelaCFDISecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTestCFDI">
+      <soap12:operation soapAction="http://tempuri.org/TimbreTestCFDI" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:TimbreTestCFDISecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbreTestTFD">
+      <soap12:operation soapAction="http://tempuri.org/TimbreTestTFD" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:TimbreTestTFDSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <soap12:operation soapAction="http://tempuri.org/createAccount" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:createAccountSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPasswordAccount">
+      <soap12:operation soapAction="http://tempuri.org/resetPasswordAccount" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:resetPasswordAccountSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeAccountState">
+      <soap12:operation soapAction="http://tempuri.org/changeAccountState" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:changeAccountStateSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserStatusInformation">
+      <soap12:operation soapAction="http://tempuri.org/getUserStatusInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:getUserStatusInformationSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTimbres">
+      <soap12:operation soapAction="http://tempuri.org/addTimbres" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:addTimbresSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeTimbresTotal">
+      <soap12:operation soapAction="http://tempuri.org/changeTimbresTotal" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:changeTimbresTotalSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificateStateLCO">
+      <soap12:operation soapAction="http://tempuri.org/getCertificateStateLCO" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:getCertificateStateLCOSecureWebServiceHeader" part="SecureWebServiceHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TimbradoCFDI">
+    <wsdl:port name="TimbradoCFDISoap" binding="tns:TimbradoCFDISoap">
+      <soap:address location="http://192.168.1.212:7171/TimbradoCFDI.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="TimbradoCFDISoap12" binding="tns:TimbradoCFDISoap12">
+      <soap12:address location="http://192.168.1.212:7171/TimbradoCFDI.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
