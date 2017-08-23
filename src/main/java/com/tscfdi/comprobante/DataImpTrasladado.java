@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
 /**
- * Created by lugty on 22/08/16.
+ * Created by lugty on 8/23/17.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
@@ -15,22 +15,28 @@ import java.math.BigDecimal;
 )
 public class DataImpTrasladado {
     @XmlAttribute(
-            name = "impuesto",
+            name = "Impuesto",
             required = true
     )
-    private String impuesto; // REQUERIDO
+    private String impuesto;
 
     @XmlAttribute(
-            name = "tasa",
+            name = "TipoFactor",
             required = true
     )
-    private BigDecimal tasa; // REQUERIDO
+    private String tipoFactor;
 
     @XmlAttribute(
-            name = "importe",
+            name = "TasaOCuota",
             required = true
     )
-    private BigDecimal importe; // REQUERIDO
+    private BigDecimal tasaOCuota;
+
+    @XmlAttribute(
+            name = "Importe",
+            required = true
+    )
+    private BigDecimal importe;
 
     public String getImpuesto() {
         return impuesto;
@@ -40,12 +46,20 @@ public class DataImpTrasladado {
         this.impuesto = impuesto;
     }
 
-    public BigDecimal getTasa() {
-        return tasa;
+    public String getTipoFactor() {
+        return tipoFactor;
     }
 
-    public void setTasa(BigDecimal tasa) {
-        this.tasa = tasa;
+    public void setTipoFactor(String tipoFactor) {
+        this.tipoFactor = tipoFactor;
+    }
+
+    public BigDecimal getTasaOCuota() {
+        return tasaOCuota;
+    }
+
+    public void setTasaOCuota(BigDecimal tasaOCuota) {
+        this.tasaOCuota = tasaOCuota;
     }
 
     public BigDecimal getImporte() {
@@ -55,4 +69,5 @@ public class DataImpTrasladado {
     public void setImporte(BigDecimal importe) {
         this.importe = importe;
     }
+
 }

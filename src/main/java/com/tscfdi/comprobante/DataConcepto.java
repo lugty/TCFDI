@@ -1,10 +1,8 @@
 package com.tscfdi.comprobante;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by lugty on 19/08/16.
@@ -12,43 +10,93 @@ import java.math.BigDecimal;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
         name = "",
-        propOrder = {}
+        propOrder = {"impuestos", "informacionAduanera", "cuentaPredial", "complementoConcepto", "parte"}
 )
 public class DataConcepto {
     @XmlAttribute(
-            name = "cantidad",
+            name = "ClaveProdServ",
+            required = true
+    )
+    private String claveProdServ;
+
+    @XmlAttribute(
+            name = "NoIdentificacion"
+    )
+    private String noIdentificacion;
+
+    @XmlAttribute(
+            name = "Cantidad",
             required = true
     )
     private BigDecimal cantidad;
 
     @XmlAttribute(
-            name = "unidad",
+            name = "ClaveUnidad",
             required = true
+    )
+    private String claveUnidad;
+
+    @XmlAttribute(
+            name = "Unidad"
     )
     private String unidades;
 
     @XmlAttribute(
-            name = "noIdentificacion"
-    )
-    private String noIdentificacion;
-
-    @XmlAttribute(
-            name = "descripcion",
+            name = "Descripcion",
             required = true
     )
     private String descripcion;
 
     @XmlAttribute(
-            name = "valorUnitario",
+            name = "ValorUnitario",
             required = true
     )
     private BigDecimal valorUnitario;
 
     @XmlAttribute(
-            name = "importe",
+            name = "Importe",
             required = true
     )
     private BigDecimal importe;
+
+    @XmlAttribute(
+            name = "Descuento"
+    )
+    private BigDecimal descuento;
+
+
+
+
+
+    @XmlElement(
+            name = "Impuestos"
+    )
+    private DataImpuestosConcepto impuestos;
+
+    @XmlElement(
+            name = "InformacionAduanera"
+    )
+    private List<DataInformacionAduanera> informacionAduanera;
+
+    @XmlElement(
+            name = "CuentaPredial"
+    )
+    private DataCuentaPredial cuentaPredial;
+
+    @XmlElement(
+            name = "ComplementoConcepto"
+    )
+    private DataComplementoConcepto complementoConcepto;
+
+    @XmlElement(
+            name = "Parte"
+    )
+    private DataParte parte;
+
+
+
+
+
 
     public BigDecimal getCantidad() {
         return cantidad;
@@ -96,5 +144,69 @@ public class DataConcepto {
 
     public void setImporte(BigDecimal importe) {
         this.importe = importe;
+    }
+
+    public String getClaveProdServ() {
+        return claveProdServ;
+    }
+
+    public void setClaveProdServ(String claveProdServ) {
+        this.claveProdServ = claveProdServ;
+    }
+
+    public String getClaveUnidad() {
+        return claveUnidad;
+    }
+
+    public void setClaveUnidad(String claveUnidad) {
+        this.claveUnidad = claveUnidad;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
+    }
+
+    public DataImpuestosConcepto getImpuestos() {
+        return impuestos;
+    }
+
+    public void setImpuestos(DataImpuestosConcepto impuestos) {
+        this.impuestos = impuestos;
+    }
+
+    public List<DataInformacionAduanera> getInformacionAduanera() {
+        return informacionAduanera;
+    }
+
+    public void setInformacionAduanera(List<DataInformacionAduanera> informacionAduanera) {
+        this.informacionAduanera = informacionAduanera;
+    }
+
+    public DataCuentaPredial getCuentaPredial() {
+        return cuentaPredial;
+    }
+
+    public void setCuentaPredial(DataCuentaPredial cuentaPredial) {
+        this.cuentaPredial = cuentaPredial;
+    }
+
+    public DataComplementoConcepto getComplementoConcepto() {
+        return complementoConcepto;
+    }
+
+    public void setComplementoConcepto(DataComplementoConcepto complementoConcepto) {
+        this.complementoConcepto = complementoConcepto;
+    }
+
+    public DataParte getParte() {
+        return parte;
+    }
+
+    public void setParte(DataParte parte) {
+        this.parte = parte;
     }
 }

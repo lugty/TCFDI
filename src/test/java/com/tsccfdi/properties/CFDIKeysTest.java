@@ -2,8 +2,10 @@ package com.tsccfdi.properties;
 
 import com.tscfdi.cfdi.*;
 import com.tscfdi.clientWS.TimbradoCFDIStub;
+import com.tscfdi.comprobante.DataComplemento;
 import com.tscfdi.comprobante.TimbreFiscalDigital;
 import com.tscfdi.comprobante.DataComprobante;
+import com.tscfdi.comprobante.complementos.DataImpuestosLocales;
 import com.tscfdi.keys.PrivateKeyLoader;
 import com.tscfdi.keys.PublicKeyLoader;
 import org.junit.Test;
@@ -14,6 +16,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lugty on 29/08/16.
@@ -64,6 +69,48 @@ public class CFDIKeysTest {
         System.out.println(xml);
 
         System.out.println(cfdi.getCadenaOriginal());
+
+        /***************************** validaor de CFDI *********************************************/
+        //ValidadorCFDI validadorCFDI = new ValidadorCFDI(comprobante);
+        //validadorCFDI.validar();
+    }
+
+    @Test
+    public void testComplementoTimbrado() throws Exception{
+        InputStream privateInput = getClass().getResourceAsStream("/csd/private.key");
+        InputStream publicInput = getClass().getResourceAsStream("/csd/public.cer");
+
+        PublicKeyLoader publicKeyLoader = new PublicKeyLoader(publicInput);
+        PrivateKeyLoader privateKeyLoader = new PrivateKeyLoader(privateInput, "Zalli902");
+
+        DataComprobante comprobante =  CfdiXmlTest.getCfdiObjectData();
+
+        /** add complementos **/
+        List<Object> listComplementos = new ArrayList<Object>();
+
+        /** Complemento Impuestos Locales **/
+        DataImpuestosLocales dataImpuestosLocales = new DataImpuestosLocales();
+        dataImpuestosLocales.setVersion("1.0");
+        dataImpuestosLocales.setTotalDeRetenciones(new BigDecimal(100));
+        dataImpuestosLocales.setTotalDeTraslados(new BigDecimal(100));
+
+        listComplementos.add(dataImpuestosLocales);
+
+        /** add complemento object **/
+        DataComplemento complemento = new DataComplemento();
+        complemento.setAny(listComplementos);
+        comprobante.setComplemento(complemento);
+
+        /** **/
+
+        CFDI cfdi = new CFDI(comprobante, "com.tscfdi.comprobante.complementos");
+        cfdi.sellar(privateKeyLoader.key, publicKeyLoader.key);
+
+        byte[] xmlBytes = cfdi.getBytesXML();
+        String xml = new String(xmlBytes);
+
+        System.out.println(xml);
+        System.out.println(cfdi.getCadenaOriginal());
     }
 
     @Test
@@ -87,8 +134,8 @@ public class CFDIKeysTest {
         System.out.println(cfdi.getCadenaOriginal());
 
         /***************************** validaor de CFDI *********************************************/
-        ValidadorCFDI validadorCFDI = new ValidadorCFDI(comprobante);
-        validadorCFDI.validar();
+        //ValidadorCFDI validadorCFDI = new ValidadorCFDI(comprobante);
+        //validadorCFDI.validar();
 
         /***************************** prueba timbrado ********************************/
         //byte[] timbradoCFDI = this.timbradoCFDI.timbrarCFDI(cfdi);

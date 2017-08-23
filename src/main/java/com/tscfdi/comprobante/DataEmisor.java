@@ -10,7 +10,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
         name = "",
-        propOrder = {"domicilioFiscal", "expedidoEn", "regimenFiscal"}
+        propOrder = {}
 )
 public class DataEmisor {
     @XmlAttribute(
@@ -20,25 +20,15 @@ public class DataEmisor {
     private String rfc; // REQUIRED
 
     @XmlAttribute(
-            name = "nombre"
+            name = "Nombre"
     )
     private String nombre; // OPTIONAL
 
-    @XmlElement(
-            name = "DomicilioFiscal"
-    )
-    private DataDomicilioFiscal domicilioFiscal; // OPTIONAL
-
-    @XmlElement(
-            name = "ExpedidoEn"
-    )
-    private DataExpedidoEn expedidoEn; // OPTIONAL
-
-    @XmlElement(
+    @XmlAttribute(
             name = "RegimenFiscal",
             required = true
     )
-    private List<DataRegimenFiscal> regimenFiscal = new ArrayList<DataRegimenFiscal>(); // REQUIRED
+    private String regimenFiscal; // REQUIRED
 
     public DataEmisor() {
     }
@@ -59,27 +49,11 @@ public class DataEmisor {
         this.nombre = nombre;
     }
 
-    public DataDomicilioFiscal getDomicilioFiscal() {
-        return domicilioFiscal;
-    }
-
-    public void setDomicilioFiscal(DataDomicilioFiscal domicilioFiscal) {
-        this.domicilioFiscal = domicilioFiscal;
-    }
-
-    public DataExpedidoEn getExpedidoEn() {
-        return expedidoEn;
-    }
-
-    public void setExpedidoEn(DataExpedidoEn expedidoEn) {
-        this.expedidoEn = expedidoEn;
-    }
-
-    public List<DataRegimenFiscal> getRegimenFiscal() {
+    public String getRegimenFiscal() {
         return regimenFiscal;
     }
 
-    public void setRegimenFiscal(List<DataRegimenFiscal> regimenFiscal) {
+    public void setRegimenFiscal(String regimenFiscal) {
         this.regimenFiscal = regimenFiscal;
     }
 }

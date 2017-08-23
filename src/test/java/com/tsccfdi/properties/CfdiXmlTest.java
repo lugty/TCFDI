@@ -2,6 +2,7 @@ package com.tsccfdi.properties;
 
 import com.tscfdi.cfdi.CFDI;
 import com.tscfdi.comprobante.*;
+import com.tscfdi.comprobante.complementos.DataImpuestosLocales;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,7 +34,7 @@ public class CfdiXmlTest {
 
     public static DataComprobante getCfdiObjectData(){
         DataComprobante comprobante = new DataComprobante();
-        comprobante.setVersion("3.2");
+        comprobante.setVersion("3.3");
         comprobante.setSerie("A");
         comprobante.setFolio("1");
         comprobante.setFecha(new Date());
@@ -41,21 +42,15 @@ public class CfdiXmlTest {
         comprobante.setCondicionesDePago("pago en una sola exivision");
         comprobante.setSubTotal(new BigDecimal("1.1"));
         comprobante.setDescuento(new BigDecimal("1.1"));
-        comprobante.setMotivoDescuento("Prueba descuento");
         comprobante.setMoneda("MXN");
         comprobante.setTotal(new BigDecimal("1.1"));
         comprobante.setTipoDeComprobante("ingreso");
-        comprobante.setMetodoDePago("Efectivo");
         comprobante.setLugarExpedicion("Queretaro");
-        comprobante.setNumCtaPago("0000");
 
         DataEmisor emisor = new DataEmisor();
         emisor.setNombre("ITZEL LOPEZ JIMENEZ");
         emisor.setRfc("LOJI820529325");
 
-        DataRegimenFiscal regimen = new DataRegimenFiscal();
-        regimen.setRegimen("Empresarial");
-        emisor.getRegimenFiscal().add(regimen);
         comprobante.setEmisor(emisor);
 
         DataReceptor receptor = new DataReceptor();
@@ -79,7 +74,6 @@ public class CfdiXmlTest {
 
         DataImpTrasladado impT1 = new DataImpTrasladado();
         impT1.setImporte(new BigDecimal(".1"));
-        impT1.setTasa(new BigDecimal(1));
         impT1.setImpuesto("IVA");
 
         List<DataImpTrasladado> traslados = new ArrayList<DataImpTrasladado>();
@@ -94,6 +88,7 @@ public class CfdiXmlTest {
 
         impuestos.setRetenciones(retenciones);
         impuestos.setTraslados(traslados);
+
 
         return comprobante;
     }

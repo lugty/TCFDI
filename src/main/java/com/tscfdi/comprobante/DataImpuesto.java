@@ -15,12 +15,12 @@ import java.util.List;
 )
 public class DataImpuesto {
     @XmlAttribute(
-            name = "totalImpuestosRetenidos"
+            name = "TotalImpuestosRetenidos"
     )
     private BigDecimal totalImpuestosRetenidos; // OPTIONAL
 
     @XmlAttribute(
-            name = "totalImpuestosTrasladados"
+            name = "TotalImpuestosTrasladados"
     )
     private BigDecimal totalInpuestosTrasladados; // OPTIONAL
 

@@ -16,36 +16,36 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
         name = "Comprobante",
-        propOrder = { "emisor", "receptor", "conceptos", "impuestos", "complemento", "addenda" }
+        propOrder = { "cfdiRelacionados", "emisor", "receptor", "conceptos", "impuestos", "complemento", "addenda" }
 )
 @XmlRootElement(name = "Comprobante")
 public class DataComprobante {
 
     @XmlAttribute(
-            name = "version",
+            name = "Version",
             required = true
     )
     private String version;
 
     @XmlAttribute(
-            name = "serie"
+            name = "Serie"
     )
     private String serie;
 
     @XmlAttribute(
-            name = "folio"
+            name = "Folio"
     )
     private String folio;
 
     @XmlAttribute(
-            name = "fecha",
+            name = "Fecha",
             required = true
     )
     @XmlJavaTypeAdapter(DateInvoiceAdapter.class)
     private Date fecha;
 
     @XmlAttribute(
-            name = "sello",
+            name = "Sello",
             required = true
     )
     private String sello; // private readonly
@@ -57,38 +57,38 @@ public class DataComprobante {
     private String formaDePago;
 
     @XmlAttribute(
-            name = "noCertificado",
+            name = "NoCertificado",
             required = true
     )
     private String noCertificado; // private readonly
 
     @XmlAttribute(
-            name = "certificado",
+            name = "Certificado",
             required = true
     )
     private String certificado; //private readonly
 
     @XmlAttribute(
-            name = "condicionesDePago"
+            name = "CondicionesDePago"
     )
     private String condicionesDePago;
 
     @XmlAttribute(
-            name = "subTotal",
+            name = "SubTotal",
             required = true
     )
     private BigDecimal subTotal;
 
     @XmlAttribute(
-            name = "descuento",
-            required = true
+            name = "Descuento"
     )
     private BigDecimal descuento;
 
     @XmlAttribute(
-            name = "motivoDescuento"
+            name = "Moneda",
+            required = true
     )
-    private String motivoDescuento;
+    private String moneda;
 
     @XmlAttribute(
             name = "TipoCambio"
@@ -96,28 +96,21 @@ public class DataComprobante {
     private String tipoCambio;
 
     @XmlAttribute(
-            name = "Moneda"
-    )
-    private String moneda;
-
-    @XmlAttribute(
-            name = "total",
+            name = "Total",
             required = true
     )
     private BigDecimal total;
 
-
     @XmlAttribute(
-            name = "tipoDeComprobante",
+            name = "TipoDeComprobante",
             required = true
     )
     private String tipoDeComprobante;
 
     @XmlAttribute(
-            name = "metodoDePago",
-            required = true
+            name = "MetodoPago"
     )
-    private String metodoDePago;
+    private String metodoPago;
 
     @XmlAttribute(
             name = "LugarExpedicion",
@@ -126,31 +119,15 @@ public class DataComprobante {
     private String lugarExpedicion;
 
     @XmlAttribute(
-            name = "NumCtaPago"
+            name = "Confirmacion"
     )
-    private String NumCtaPago;
+    private String confirmacion;
 
-    /** para pagos en parcialidades **/
 
-    @XmlAttribute(
-            name = "FolioFiscalOrig"
+    @XmlElement(
+            name = "CfdiRelacionados"
     )
-    private String folioFiscalOrig;
-
-    @XmlAttribute(
-            name = "SerieFolioFiscalOrig"
-    )
-    private String serieFolioFiscalOrig;
-
-    @XmlAttribute(
-            name = "FechaFolioFiscalOrig"
-    )
-    private Date fechaFolioFiscalOrig;
-
-    @XmlAttribute(
-            name = "MontoFolioFiscalOrig"
-    )
-    private BigDecimal montoFolioFicalOrig;
+    private DataCfdiRelacionados cfdiRelacionados;
 
     @XmlElement(
             name = "Emisor",
@@ -172,8 +149,7 @@ public class DataComprobante {
     private List<DataConcepto> conceptos = new ArrayList<DataConcepto>();
 
     @XmlElement(
-            name = "Impuestos",
-            required = true
+            name = "Impuestos"
     )
     private DataImpuesto impuestos;
 
@@ -186,8 +162,6 @@ public class DataComprobante {
             name = "Addenda"
     )
     private DataAddenda addenda;
-
-    public DataComprobante() { }
 
     public String getVersion() {
         return version;
@@ -277,12 +251,12 @@ public class DataComprobante {
         this.descuento = descuento;
     }
 
-    public String getMotivoDescuento() {
-        return motivoDescuento;
+    public String getMoneda() {
+        return moneda;
     }
 
-    public void setMotivoDescuento(String motivoDescuento) {
-        this.motivoDescuento = motivoDescuento;
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
     }
 
     public String getTipoCambio() {
@@ -291,14 +265,6 @@ public class DataComprobante {
 
     public void setTipoCambio(String tipoCambio) {
         this.tipoCambio = tipoCambio;
-    }
-
-    public String getMoneda() {
-        return moneda;
-    }
-
-    public void setMoneda(String moneda) {
-        this.moneda = moneda;
     }
 
     public BigDecimal getTotal() {
@@ -317,12 +283,12 @@ public class DataComprobante {
         this.tipoDeComprobante = tipoDeComprobante;
     }
 
-    public String getMetodoDePago() {
-        return metodoDePago;
+    public String getMetodoPago() {
+        return metodoPago;
     }
 
-    public void setMetodoDePago(String metodoDePago) {
-        this.metodoDePago = metodoDePago;
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
     }
 
     public String getLugarExpedicion() {
@@ -333,44 +299,20 @@ public class DataComprobante {
         this.lugarExpedicion = lugarExpedicion;
     }
 
-    public String getNumCtaPago() {
-        return NumCtaPago;
+    public String getConfirmacion() {
+        return confirmacion;
     }
 
-    public void setNumCtaPago(String numCtaPago) {
-        NumCtaPago = numCtaPago;
+    public void setConfirmacion(String confirmacion) {
+        this.confirmacion = confirmacion;
     }
 
-    public String getFolioFiscalOrig() {
-        return folioFiscalOrig;
+    public DataCfdiRelacionados getCfdiRelacionados() {
+        return cfdiRelacionados;
     }
 
-    public void setFolioFiscalOrig(String folioFiscalOrig) {
-        this.folioFiscalOrig = folioFiscalOrig;
-    }
-
-    public String getSerieFolioFiscalOrig() {
-        return serieFolioFiscalOrig;
-    }
-
-    public void setSerieFolioFiscalOrig(String serieFolioFiscalOrig) {
-        this.serieFolioFiscalOrig = serieFolioFiscalOrig;
-    }
-
-    public Date getFechaFolioFiscalOrig() {
-        return fechaFolioFiscalOrig;
-    }
-
-    public void setFechaFolioFiscalOrig(Date fechaFolioFiscalOrig) {
-        this.fechaFolioFiscalOrig = fechaFolioFiscalOrig;
-    }
-
-    public BigDecimal getMontoFolioFicalOrig() {
-        return montoFolioFicalOrig;
-    }
-
-    public void setMontoFolioFicalOrig(BigDecimal montoFolioFicalOrig) {
-        this.montoFolioFicalOrig = montoFolioFicalOrig;
+    public void setCfdiRelacionados(DataCfdiRelacionados cfdiRelacionados) {
+        this.cfdiRelacionados = cfdiRelacionados;
     }
 
     public DataEmisor getEmisor() {

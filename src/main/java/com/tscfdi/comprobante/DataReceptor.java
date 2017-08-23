@@ -8,24 +8,35 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
         name = "",
-        propOrder = {"domicilio"}
+        propOrder = {}
 )
 public class DataReceptor {
     @XmlAttribute(
-            name = "rfc",
+            name = "Rfc",
             required = true
     )
     private String rfc; // REQUIRED
 
     @XmlAttribute(
-            name = "nombre"
+            name = "Nombre"
     )
     private String nombre; // OPTIONAL
 
-    @XmlElement(
-            name = "Domicilio"
+    @XmlAttribute(
+            name = "ResidenciaFiscal"
     )
-    private DataDomicilioFiscal domicilio; // OPTIONAL
+    private String residenciaFiscal;
+
+    @XmlAttribute(
+            name = "NumRegIdTrib"
+    )
+    private String numRegIdTrib;
+
+    @XmlAttribute(
+            name = "UsoCFDI",
+            required = true
+    )
+    private String usoCFDI;
 
     public DataReceptor() {
     }
@@ -46,11 +57,27 @@ public class DataReceptor {
         this.nombre = nombre;
     }
 
-    public DataDomicilioFiscal getDomicilio() {
-        return domicilio;
+    public String getResidenciaFiscal() {
+        return residenciaFiscal;
     }
 
-    public void setDomicilio(DataDomicilioFiscal domicilio) {
-        this.domicilio = domicilio;
+    public void setResidenciaFiscal(String residenciaFiscal) {
+        this.residenciaFiscal = residenciaFiscal;
+    }
+
+    public String getNumRegIdTrib() {
+        return numRegIdTrib;
+    }
+
+    public void setNumRegIdTrib(String numRegIdTrib) {
+        this.numRegIdTrib = numRegIdTrib;
+    }
+
+    public String getUsoCFDI() {
+        return usoCFDI;
+    }
+
+    public void setUsoCFDI(String usoCFDI) {
+        this.usoCFDI = usoCFDI;
     }
 }

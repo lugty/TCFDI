@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
 /**
- * Created by lugty on 22/08/16.
+ * Created by lugty on 8/23/17.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
@@ -15,16 +15,16 @@ import java.math.BigDecimal;
 )
 public class DataImpRetencion {
     @XmlAttribute(
-            name = "impuesto",
+            name = "Impuesto",
             required = true
     )
-    private String impuesto; // REQUERIDO
+    private String impuesto;
 
     @XmlAttribute(
-            name = "importe",
+            name = "Importe",
             required = true
     )
-    private BigDecimal importe; // REQUERIDO
+    private BigDecimal importe;
 
     public String getImpuesto() {
         return impuesto;

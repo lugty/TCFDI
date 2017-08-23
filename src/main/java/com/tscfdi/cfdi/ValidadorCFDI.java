@@ -34,13 +34,13 @@ public class ValidadorCFDI {
     private DataComprobante comprobante;
     private final JAXBContext context;
 
-    private static final String XSLT = "/xslt/cadenaoriginal_3_2.xslt";
+    private static final String XSLT = "/xslt/cadenaoriginal_3_3.xslt";
 
     private static final String BASE_CONTEXT = "com.tscfdi.comprobante";
     private final static Joiner JOINER = Joiner.on(':');
 
     private static final String[] XSD = new String[] {
-            "/xsd/cfdv32.xsd",
+            "/xsd/cfdv33/cfdv33.xsd",
             "/xsd/TimbreFiscalDigital.xsd",
             /*"/xsd/common/TuristaPasajeroExtranjero/TuristaPasajeroExtranjero.xsd",
             "/xsd/common/detallista/detallista.xsd",
@@ -60,7 +60,7 @@ public class ValidadorCFDI {
     };
 
     private static final String[] XSD_NOMINA = new String[] {
-            "/xsd/cfdv32.xsd",
+            "/xsd/cfdv33/cfdv33.xsd",
             "/xsd/TimbreFiscalDigital.xsd",
             "/xsd/nomina/nomina12.xsd"
     };
@@ -80,6 +80,8 @@ public class ValidadorCFDI {
 
     public void validar(ErrorHandler handler) throws Exception {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        sf.setResourceResolver(new CustomResourceResolver());
+
         Source[] schemas = new Source[XSD.length];
         for (int i = 0; i < XSD.length; i++) {
             schemas[i] = new StreamSource(getClass().getResourceAsStream(XSD[i]));
@@ -95,6 +97,7 @@ public class ValidadorCFDI {
 
     public void validarNomina(ErrorHandler handler) throws Exception {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        sf.setResourceResolver(new CustomResourceResolver());
         Source[] schemas = new Source[XSD_NOMINA.length];
         for (int i = 0; i < XSD_NOMINA.length; i++) {
             schemas[i] = new StreamSource(getClass().getResourceAsStream(XSD_NOMINA[i]));

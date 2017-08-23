@@ -10,6 +10,7 @@ import com.tscfdi.comprobante.DataComplemento;
 import com.tscfdi.comprobante.DataComprobante;
 
 import com.tscfdi.comprobante.TimbreFiscalDigital;
+import com.tscfdi.comprobante.complementos.DataImpuestosLocales;
 import com.tscfdi.comprobante.nomina.DataNomina;
 
 import org.apache.commons.codec.binary.Base64;
@@ -37,7 +38,7 @@ import java.util.Map;
  */
 public class CFDI {
     private DataComprobante comprobante;
-    private static final String XSLT = "/xslt/cadenaoriginal_3_2.xslt";
+    private static final String XSLT = "/xslt/cadenaoriginal_3_3.xslt";
     private final JAXBContext context;
 
     private static final String BASE_CONTEXT = "com.tscfdi.comprobante";
@@ -45,29 +46,9 @@ public class CFDI {
 
     private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
-    private static final String[] XSD = new String[] {
-            "/xsd/v32/cfdv32.xsd",
-            "/xsd/v3/TimbreFiscalDigital.xsd",
-            "/xsd/common/TuristaPasajeroExtranjero/TuristaPasajeroExtranjero.xsd",
-            "/xsd/common/detallista/detallista.xsd",
-            "/xsd/common/divisas/divisas.xsd",
-            "/xsd/common/donat/donat11.xsd",
-            "/xsd/common/ecb/ecb.xsd",
-            "/xsd/common/ecc/ecc.xsd",
-            "/xsd/common/iedu/iedu.xsd",
-            "/xsd/common/implocal/implocal.xsd",
-            "/xsd/common/leyendasFisc/leyendasFisc.xsd",
-            "/xsd/common/pfic/pfic.xsd",
-            "/xsd/common/psgcfdsp/psgcfdsp.xsd",
-            "/xsd/common/psgecfd/psgecfd.xsd",
-            "/xsd/common/terceros/terceros11.xsd",
-            "/xsd/common/ventavehiculos/ventavehiculos.xsd",
-            "/xsd/common/nomina/nomina12.xsd"
-    };
-
-    private static final String SCHEMA_LOCATION_CFDI = "http://www.sat.gob.mx/cfd/3  http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd ";
+    private static final String SCHEMA_LOCATION_CFDI = "http://www.sat.gob.mx/cfd/3  http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd ";
     private static final String SCHEMA_LOCATION_NOMINA = "http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd ";
-
+    private static final String SCHEMA_LOCATION_IMP_LOCALES = "http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd";
 
     public static final ImmutableMap<String, String> PREFIXES =
             ImmutableMap.of(
@@ -202,6 +183,8 @@ public class CFDI {
                 for(Object obj: any){
                     if(obj instanceof DataNomina)
                         nm += this.SCHEMA_LOCATION_NOMINA;
+                    if(obj instanceof DataImpuestosLocales)
+                        nm += this.SCHEMA_LOCATION_IMP_LOCALES;
                 }
             }
         }

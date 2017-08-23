@@ -17,6 +17,8 @@ public class DateInvoiceAdapter extends XmlAdapter<String, Date> {
     }
 
     public String marshal(Date v) throws Exception {
+        if(v == null)
+            return null;
         return dateFormat.format(v);
     }
 }
