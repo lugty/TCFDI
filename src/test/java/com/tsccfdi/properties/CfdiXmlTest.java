@@ -38,7 +38,7 @@ public class CfdiXmlTest {
         comprobante.setSerie("A");
         comprobante.setFolio("1");
         comprobante.setFecha(new Date());
-        comprobante.setFormaDePago("efectivo");
+        comprobante.setFormaPago("efectivo");
         comprobante.setCondicionesDePago("pago en una sola exivision");
         comprobante.setSubTotal(new BigDecimal("1.1"));
         comprobante.setDescuento(new BigDecimal("1.1"));

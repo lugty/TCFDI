@@ -14,7 +14,7 @@ import java.util.List;
 )
 public class DataEmisor {
     @XmlAttribute(
-            name = "rfc",
+            name = "Rfc",
             required = true
     )
     private String rfc; // REQUIRED

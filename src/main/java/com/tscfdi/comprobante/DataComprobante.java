@@ -51,10 +51,10 @@ public class DataComprobante {
     private String sello; // private readonly
 
     @XmlAttribute(
-            name = "formaDePago",
+            name = "FormaPago",
             required = true
     )
-    private String formaDePago;
+    private String formaPago;
 
     @XmlAttribute(
             name = "NoCertificado",
@@ -203,12 +203,12 @@ public class DataComprobante {
         this.sello = sello;
     }
 
-    public String getFormaDePago() {
-        return formaDePago;
+    public String getFormaPago() {
+        return formaPago;
     }
 
-    public void setFormaDePago(String formaDePago) {
-        this.formaDePago = formaDePago;
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
     }
 
     public String getNoCertificado() {

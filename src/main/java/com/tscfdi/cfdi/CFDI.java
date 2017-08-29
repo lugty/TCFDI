@@ -87,7 +87,7 @@ public class CFDI {
 
     private String getSignature(PrivateKey key) throws Exception {
         byte[] bytes = getBytesCadenaOriginal();
-        Signature sig = Signature.getInstance("SHA1withRSA");
+        Signature sig = Signature.getInstance("SHA256withRSA");
         sig.initSign(key);
         sig.update(bytes);
         byte[] signed = sig.sign();

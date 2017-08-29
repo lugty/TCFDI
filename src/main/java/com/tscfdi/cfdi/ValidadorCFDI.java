@@ -131,7 +131,7 @@ public class ValidadorCFDI {
         byte[] signature = b64.decode(sigStr);
 
         byte[] bytes = getBytesCadenaOriginal();
-        Signature sig = Signature.getInstance("SHA1withRSA");
+        Signature sig = Signature.getInstance("SHA256withRSA");
         sig.initVerify(cert);
         sig.update(bytes);
         boolean bool = sig.verify(signature);
