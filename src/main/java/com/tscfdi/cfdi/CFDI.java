@@ -75,14 +75,18 @@ public class CFDI {
 
     public void sellar(PrivateKey key, X509Certificate cert) throws Exception {
         cert.checkValidity();
+
+        BigInteger bi = cert.getSerialNumber();
+        comprobante.setNoCertificado(new String(bi.toByteArray()));
+
         String signature = getSignature(key);
         comprobante.setSello(signature);
+
         byte[] bytes = cert.getEncoded();
         Base64 b64 = new Base64(-1);
         String certStr = b64.encodeToString(bytes);
         comprobante.setCertificado(certStr);
-        BigInteger bi = cert.getSerialNumber();
-        comprobante.setNoCertificado(new String(bi.toByteArray()));
+
     }
 
     private String getSignature(PrivateKey key) throws Exception {
