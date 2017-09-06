@@ -21,7 +21,7 @@ import java.util.Date;
 )
 public class TimbreFiscalDigital {
     @XmlAttribute(
-            name = "version",
+            name = "Version",
             required = true
     )
     @XmlSchemaType(
@@ -33,24 +33,39 @@ public class TimbreFiscalDigital {
             required = true
     )
     protected String uuid;
+
     @XmlAttribute(
             name = "FechaTimbrado",
             required = true
     )
     @XmlJavaTypeAdapter(DateInvoiceAdapter.class)
     protected Date fechaTimbrado;
+
     @XmlAttribute(
-            name = "selloCFD",
+            name = "RfcProvCertif",
+            required = true
+    )
+    protected String rfcProvCertif;
+
+    @XmlAttribute(
+            name = "Leyenda"
+    )
+    protected String leyenda;
+
+    @XmlAttribute(
+            name = "SelloCFD",
             required = true
     )
     protected String selloCFD;
+
     @XmlAttribute(
-            name = "noCertificadoSAT",
+            name = "NoCertificadoSAT",
             required = true
     )
     protected String noCertificadoSAT;
+
     @XmlAttribute(
-            name = "selloSAT",
+            name = "SelloSAT",
             required = true
     )
     protected String selloSAT;
@@ -79,6 +94,22 @@ public class TimbreFiscalDigital {
 
     public void setFechaTimbrado(Date fechaTimbrado) {
         this.fechaTimbrado = fechaTimbrado;
+    }
+
+    public String getRfcProvCertif() {
+        return rfcProvCertif;
+    }
+
+    public void setRfcProvCertif(String rfcProvCertif) {
+        this.rfcProvCertif = rfcProvCertif;
+    }
+
+    public String getLeyenda() {
+        return leyenda;
+    }
+
+    public void setLeyenda(String leyenda) {
+        this.leyenda = leyenda;
     }
 
     public String getSelloCFD() {

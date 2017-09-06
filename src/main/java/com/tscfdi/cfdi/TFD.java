@@ -18,8 +18,8 @@ import java.io.ByteArrayOutputStream;
  * Created by lugty on 31/08/16.
  */
 public class TFD {
-    private static final String XSLT = "/xslt/cadenaoriginal_TFD_1_0.xslt";
-    private static final String XSD = "/xsd/TimbreFiscalDigital.xsd";
+    private static final String XSLT = "/xslt/cadenaoriginal_TFD_1_1.xslt";
+    private static final String XSD = "/xsd/TimbreFiscalDigitalv11.xsd";
 
     private TransformerFactory tf;
 
@@ -52,7 +52,7 @@ public class TFD {
 
     public void validar(ErrorHandler handler) throws Exception {
         SchemaFactory sf = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        Schema schema = sf.newSchema(this.getClass().getResource("/xsd/TimbreFiscalDigital.xsd"));
+        Schema schema = sf.newSchema(this.getClass().getResource("/xsd/TimbreFiscalDigitalv11.xsd"));
         Validator validator = schema.newValidator();
         if(handler != null) {
             validator.setErrorHandler(handler);
@@ -75,7 +75,7 @@ public class TFD {
             factory = TransformerFactory.newInstance();
         }
 
-        Transformer transformer = factory.newTransformer(new StreamSource(this.getClass().getResourceAsStream("/xslt/cadenaoriginal_TFD_1_0.xslt")));
+        Transformer transformer = factory.newTransformer(new StreamSource(this.getClass().getResourceAsStream("/xslt/cadenaoriginal_TFD_1_1.xslt")));
         transformer.transform(in, out);
         return baos.toByteArray();
     }

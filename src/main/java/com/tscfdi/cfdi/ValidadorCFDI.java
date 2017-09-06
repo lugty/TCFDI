@@ -41,7 +41,8 @@ public class ValidadorCFDI {
 
     private static final String[] XSD = new String[] {
             "/xsd/cfdv33/cfdv33.xsd",
-            "/xsd/TimbreFiscalDigital.xsd",
+            "/xsd/TimbreFiscalDigitalv11.xsd",
+            "/xsd/complementos/implocal.xsd"
             /*"/xsd/common/TuristaPasajeroExtranjero/TuristaPasajeroExtranjero.xsd",
             "/xsd/common/detallista/detallista.xsd",
             "/xsd/common/divisas/divisas.xsd",
@@ -61,7 +62,7 @@ public class ValidadorCFDI {
 
     private static final String[] XSD_NOMINA = new String[] {
             "/xsd/cfdv33/cfdv33.xsd",
-            "/xsd/TimbreFiscalDigital.xsd",
+            "/xsd/TimbreFiscalDigitalv11.xsd",
             "/xsd/nomina/nomina12.xsd"
     };
 
