@@ -11,7 +11,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
         name = "",
-        propOrder = {"retenciones", "traslados"}
+        propOrder = {"traslados", "retenciones"}
 )
 public class DataImpuestosConcepto {
     @XmlElementWrapper(name = "Retenciones")

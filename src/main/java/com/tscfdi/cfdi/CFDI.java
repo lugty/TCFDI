@@ -10,6 +10,8 @@ import com.tscfdi.comprobante.DataComplemento;
 import com.tscfdi.comprobante.DataComprobante;
 
 import com.tscfdi.comprobante.TimbreFiscalDigital;
+import com.tscfdi.comprobante.complementoPago.DataPagos;
+import com.tscfdi.comprobante.complementoSPC.DataParcialesConstruccion;
 import com.tscfdi.comprobante.complementos.DataImpuestosLocales;
 import com.tscfdi.comprobante.nomina.DataNomina;
 
@@ -48,7 +50,11 @@ public class CFDI {
 
     private static final String SCHEMA_LOCATION_CFDI = "http://www.sat.gob.mx/cfd/3  http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd ";
     private static final String SCHEMA_LOCATION_NOMINA = "http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd ";
+
     private static final String SCHEMA_LOCATION_IMP_LOCALES = "http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd";
+    private static final String SCHEMA_LOCATION_SERVICIOS_PARCIALES_CONSTRUCCION = "http://www.sat.gob.mx/servicioparcialconstruccion http://www.sat.gob.mx/sitio_internet/cfd/servicioparcialconstruccion/servicioparcialconstruccion.xsd";
+
+    private static final String SCHEMA_LOCATION_PAGOS = "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd";
 
     public static final ImmutableMap<String, String> PREFIXES =
             ImmutableMap.of(
@@ -189,6 +195,10 @@ public class CFDI {
                         nm += this.SCHEMA_LOCATION_NOMINA;
                     if(obj instanceof DataImpuestosLocales)
                         nm += this.SCHEMA_LOCATION_IMP_LOCALES;
+                    if(obj instanceof DataPagos)
+                        nm += this.SCHEMA_LOCATION_PAGOS;
+                    if(obj instanceof DataParcialesConstruccion)
+                        nm += this.SCHEMA_LOCATION_SERVICIOS_PARCIALES_CONSTRUCCION;
                 }
             }
         }
